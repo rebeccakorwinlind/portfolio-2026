@@ -1,5 +1,4 @@
 <script setup>
-import video from '@/assets/Rebecca_videoCV.mp4'
 </script>
 
 <template>
@@ -16,33 +15,27 @@ import video from '@/assets/Rebecca_videoCV.mp4'
       </div>
     </div>
   </div>
-  
-  <div class="scroll-indicator">
-    <p>Rul ned for at se mit arbejde!</p>
-    <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </div>
 </template>
 
 <style scoped>
 .hero {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
   align-items: center;
-  padding: 0 64px 64px 64px ;
   height: calc(100vh - 100px);
   gap: 3rem;
+  width: 100%;
 }
 
 .hero-left {
-  flex: 1;
   color: white;
+  grid-column: 2 / 7;
 }
 
 .hero-title {
   font-size: 4rem;
-  font-weight: bold;
+  font-weight: 500;
   margin: 0 0 0 0;
   font-family: bebas neue, sans-serif;
   letter-spacing: 0.1rem;
@@ -56,17 +49,19 @@ import video from '@/assets/Rebecca_videoCV.mp4'
 }
 
 .cta-button {
-  background: white;
-  color: #9933ff;
-  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   padding: 0.8rem 1.8rem;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 500;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: bebas neue, sans-serif;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.15rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button:hover {
@@ -75,9 +70,9 @@ import video from '@/assets/Rebecca_videoCV.mp4'
 }
 
 .hero-right {
-  flex: 1;
   display: flex;
   justify-content: center;
+  grid-column: 7 / -1;
 }
 
 .video-container {
@@ -98,35 +93,5 @@ import video from '@/assets/Rebecca_videoCV.mp4'
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: white;
-}
-
-.scroll-indicator p {
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
-}
-
-.scroll-arrow {
-  width: 24px;
-  height: 24px;
-  margin: 0 auto;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
 }
 </style>

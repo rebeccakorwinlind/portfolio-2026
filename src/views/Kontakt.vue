@@ -7,8 +7,16 @@ const email = ref('')
 const message = ref('')
 const isSubmitting = ref(false)
 const submitMessage = ref('')
+const messageTextarea = ref(null)
 
 emailjs.init('xrUWFvNNAndN81w33')
+
+const autoGrowTextarea = () => {
+  if (messageTextarea.value) {
+    messageTextarea.value.style.height = 'auto'
+    messageTextarea.value.style.height = messageTextarea.value.scrollHeight + 'px'
+  }
+}
 
 const handleSubmit = async (e) => {
   e.preventDefault()
@@ -82,7 +90,7 @@ const handleSubmit = async (e) => {
 
   <div class="form-group">
     <label for="message">Besked</label>
-    <textarea id="message" v-model="message" rows="5" required></textarea>
+    <textarea id="message" v-model="message" ref="messageTextarea" @input="autoGrowTextarea" rows="5" required></textarea>
   </div>
 
   <p v-if="submitMessage" class="submit-message" :class="{ success: submitMessage.includes('✓'), error: submitMessage.includes('✗') }">
@@ -98,18 +106,23 @@ const handleSubmit = async (e) => {
 
 <style scoped>
 .kontakt-content {
-  padding: 4rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 2 / 12;
   color: white;
+  gap: 2rem;
+  align-content: start;
+  padding: 2rem 0;
 }
 
 .kontakt-content h1 {
   font-size: 3rem;
   font-family: bebas neue, sans-serif;
+  font-weight: 500;
   letter-spacing: 0.1rem;
   margin-bottom: 2rem;
   text-align: center;
+  grid-column: 1 / -1;
 }
 
 .contact-info {
@@ -117,12 +130,15 @@ const handleSubmit = async (e) => {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
+  grid-column: 1 / -1;
+  justify-items: center;
 }
 
 .contact-item h2 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
   font-family: bebas neue, sans-serif;
+  font-weight: 500;
 }
 
 .contact-item p {
@@ -163,6 +179,8 @@ const handleSubmit = async (e) => {
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  grid-column: 1 / -1;
 }
 
 .form-group {
@@ -186,6 +204,7 @@ const handleSubmit = async (e) => {
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.9);
   color: #333;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -194,19 +213,30 @@ const handleSubmit = async (e) => {
   box-shadow: 0 0 10px rgba(255, 221, 0, 0.5);
 }
 
+.form-group textarea {
+  width: 100%;
+  max-width: 100%;
+  resize: none;
+  overflow: hidden;
+  min-height: 120px;
+}
+
 .submit-button {
   width: 100%;
   padding: 1rem;
-  background: white;
-  color: #9933ff;
-  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: bebas neue, sans-serif;
   letter-spacing: 0.05rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .submit-button:hover {
