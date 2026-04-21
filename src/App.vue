@@ -52,11 +52,14 @@ const goToProjects = () => {
   display: grid;
   grid-template-columns: subgrid;
   gap: 2rem;
-  padding: 0.8rem 0;
+  padding: 0.5rem 2rem;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.326);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  height: 70px;
+  box-sizing: border-box;
 }
 
 .nav-button {
@@ -74,14 +77,23 @@ const goToProjects = () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 .nav-button:first-child {
   grid-column: 2;
 }
 
+.nav-button:nth-child(2) {
+  grid-column: 3;
+}
+
+.nav-button:nth-child(3) {
+  grid-column: 4;
+}
+
 .nav-button:hover {
-  color: #ffffff;
+  color: #ffcb05;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   transform: scale(1.1);
 }
@@ -101,3 +113,5 @@ body, html {
   padding: 0;
 }
 </style>
+
+

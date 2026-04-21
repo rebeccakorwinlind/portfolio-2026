@@ -1,4 +1,10 @@
 <script setup>
+const downloadCV = () => {
+  const link = document.createElement('a')
+  link.href = '/Rebecca Korwin Lind CV 2026.pdf'
+  link.download = 'Rebecca Korwin Lind CV 2026.pdf'
+  link.click()
+}
 </script>
 
 <template>
@@ -6,7 +12,7 @@
     <div class="hero-left">
       <h1 class="hero-title">Rebecca Korwin Lind</h1>
       <p class="hero-description">Multimedie design studerende, med fokus på interaktive og visuelle oplevelser</p>
-      <button class="cta-button">Download CV</button>
+      <button class="cta-button" @click="downloadCV">Download CV</button>
     </div>
     
     <div class="hero-right">
@@ -67,6 +73,7 @@
 .cta-button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+  color: #ffcb05;
 }
 
 .hero-right {

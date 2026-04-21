@@ -23,6 +23,12 @@ const projects = [
     title: 'Project 4',
     description: 'Add your project description here. This is where you can explain what the project is about, the technologies used, and your role in creating it.',
     image: 'https://via.placeholder.com/400x300'
+  },
+  {
+    id: 5,
+    title: 'Project 5',
+    description: 'Add your project description here. This is where you can explain what the project is about, the technologies used, and your role in creating it.',
+    image: 'https://via.placeholder.com/400x300'
   }
 ]
 </script>
