@@ -225,7 +225,7 @@ const handleSubmit = async (e) => {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
-  grid-column: 1 / -1;
+  grid-column: 3 / -3;
 }
 
 @media (max-width: 768px) {

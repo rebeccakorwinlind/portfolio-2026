@@ -1,9 +1,17 @@
-<script setup>
+﻿<script setup>
 const downloadCV = () => {
-  const link = document.createElement('a')
-  link.href = '/Rebecca Korwin Lind CV 2026.pdf'
-  link.download = 'Rebecca Korwin Lind CV 2026.pdf'
-  link.click()
+  try {
+    const link = document.createElement('a')
+    link.href = '/Rebecca Korwin Lind CV 2026.pdf'
+    link.download = 'Rebecca Korwin Lind CV 2026.pdf'
+    link.style.display = 'none'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  } catch (error) {
+    console.error('Download failed:', error)
+    window.open('/Rebecca Korwin Lind CV 2026.pdf', '_blank')
+  }
 }
 </script>
 
@@ -188,3 +196,4 @@ const downloadCV = () => {
   object-fit: cover;
 }
 </style>
+
