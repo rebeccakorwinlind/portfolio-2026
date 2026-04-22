@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
       {
         from_name: name.value,
         from_email: email.value,
-        message: message.value,
+        message: `Email: ${email.value}\n\n${message.value}`,
         to_email: 'reblin01@easv365.dk',
       }
     )
@@ -112,7 +112,27 @@ const handleSubmit = async (e) => {
   color: white;
   gap: 2rem;
   align-content: start;
-  padding: 2rem 0;
+  padding: 2rem 0 6rem 0;
+}
+
+@media (max-width: 1024px) {
+  .kontakt-content {
+    grid-column: 1 / 13;
+    padding: 1.5rem 1rem 6rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .kontakt-content {
+    grid-column: 1 / 13;
+    padding: 1rem 1rem 6rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .kontakt-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .kontakt-content h1 {
@@ -134,6 +154,21 @@ const handleSubmit = async (e) => {
   justify-items: center;
 }
 
+@media (max-width: 768px) {
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .contact-item h2 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
@@ -143,6 +178,16 @@ const handleSubmit = async (e) => {
 
 .contact-item p {
   font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .contact-item h2 {
+    font-size: 1.1rem;
+  }
+
+  .contact-item p {
+    font-size: 1rem;
+  }
 }
 
 .contact-item a {
@@ -183,6 +228,12 @@ const handleSubmit = async (e) => {
   grid-column: 1 / -1;
 }
 
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 1.5rem;
+  }
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -205,6 +256,18 @@ const handleSubmit = async (e) => {
   background: rgba(255, 255, 255, 0.9);
   color: #333;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.95rem;
+    padding: 0.7rem;
+  }
 }
 
 .form-group input:focus,
@@ -237,6 +300,13 @@ const handleSubmit = async (e) => {
   letter-spacing: 0.05rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
 }
 
 .submit-button:hover {

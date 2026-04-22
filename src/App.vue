@@ -62,6 +62,39 @@ const goToProjects = () => {
   box-sizing: border-box;
 }
 
+@media (max-width: 1024px) {
+  .navbar {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-button {
+    font-size: 1rem;
+    padding: 0.3rem 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0;
+    height: 70px;
+    padding: 0.5rem 0;
+  }
+
+  .nav-button {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+    grid-column: auto !important;
+    flex: 1;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-button:last-child {
+    border-right: none;
+  }
+}
+
 .nav-button {
   background: none;
   border: none;
