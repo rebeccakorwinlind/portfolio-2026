@@ -61,6 +61,7 @@ const downloadCV = () => {
 @media (max-width: 1024px) {
   .hero-left {
     grid-column: 2 / 12;
+    text-align: center;
   }
 }
 
@@ -68,6 +69,7 @@ const downloadCV = () => {
   .hero-left {
     grid-column: 1 / -1;
     padding: 0 1rem;
+    text-align: center;
   }
 }
 
@@ -103,6 +105,8 @@ const downloadCV = () => {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -126,6 +130,9 @@ const downloadCV = () => {
   .cta-button {
     font-size: 1rem;
     padding: 0.7rem 1.4rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
