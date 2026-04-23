@@ -1,18 +1,27 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
 const router = useRouter()
+const sidebarOpen = ref(false)
 
 const goHome = () => {
   router.push('/')
+  sidebarOpen.value = false
 }
 
 const goToKontakt = () => {
   router.push('/kontakt')
+  sidebarOpen.value = false
 }
 
 const goToProjects = () => {
   router.push('/projects')
+  sidebarOpen.value = false
+}
+
+const toggleSidebar = () => {
+  sidebarOpen.value = !sidebarOpen.value
 }
 </script>
 
@@ -23,7 +32,21 @@ const goToProjects = () => {
       <button class="nav-button" @click="goHome">Forside</button>
       <button class="nav-button" @click="goToProjects">Projekter</button>
       <button class="nav-button" @click="goToKontakt">Kontakt mig</button>
+      <button class="hamburger-button" @click="toggleSidebar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <div class="sidebar" :class="{ active: sidebarOpen }">
+      <button class="close-button" @click="toggleSidebar">✕</button>
+      <button class="sidebar-nav-button" @click="goHome">Forside</button>
+      <button class="sidebar-nav-button" @click="goToProjects">Projekter</button>
+      <button class="sidebar-nav-button" @click="goToKontakt">Kontakt mig</button>
+    </div>
+
+    <div class="sidebar-overlay" v-show="sidebarOpen" @click="toggleSidebar"></div>
     
     <div class="content-wrapper">
       <router-view />
@@ -81,18 +104,6 @@ const goToProjects = () => {
     height: 70px;
     padding: 0.5rem 0;
   }
-
-  .nav-button {
-    font-size: 0.9rem;
-    padding: 0.7rem;
-    grid-column: auto !important;
-    flex: 1;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .nav-button:last-child {
-    border-right: none;
-  }
 }
 
 .nav-button {
@@ -131,13 +142,139 @@ const goToProjects = () => {
   transform: scale(1.1);
 }
 
+@media (max-width: 768px) {
+  .nav-button {
+    display: none !important;
+  }
+
+  .nav-button:first-child {
+    grid-column: auto;
+  }
+
+  .nav-button:nth-child(2) {
+    grid-column: auto;
+  }
+
+  .nav-button:nth-child(3) {
+    grid-column: auto;
+  }
+}
+
+
+.hamburger-button {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 0.35rem;
+  grid-column: 12;
+  padding-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hamburger-button {
+    display: flex;
+  }
+}
+
+.hamburger-button span {
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-button:hover span {
+  background: #ffcb05;
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 70px;
+  width: 250px;
+  height: calc(100vh - 70px);
+  background: rgba(48, 131, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 0;
+  padding-top: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.close-button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.close-button:hover {
+  color: #ffcb05;
+  transform: scale(1.2);
+}
+
+.sidebar-nav-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  transition: all 0.3s ease;
+  font-family: bebas neue, sans-serif;
+  letter-spacing: 0.1rem;
+  text-align: left;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-nav-button:hover {
+  color: #ffcb05;
+  background: rgba(255, 255, 255, 0.1);
+  border-left-color: #ffcb05;
+  transform: translateX(5px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
 .content-wrapper {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
 }
-
-
 </style>
 
 <style>
